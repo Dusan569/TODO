@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <img src="./assets/logo.png" alt="Logo" width="80" class="d-inline-block align-text-top">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/auth" *ngIf="!isAuthenticated">Authenticate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/welcome" *ngIf="!isAuthenticated">Welcome</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/todo" *ngIf="isAuthenticated">TODO app</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-right mb-2 mb-lg-0" *ngIf="isAuthenticated">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" role="button" id="customDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <mat-icon>account_circle</mat-icon>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="customDropdownMenu">
+                    <li><a class="dropdown-item" (click)="logOut()" style="cursor: pointer;">Logout</a></li>
+                    <li><a class="dropdown-item" (click)="saveData()" style="cursor: pointer;">Save Data</a></li>
+                </ul>
+            </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+

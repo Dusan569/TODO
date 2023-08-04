@@ -1,0 +1,37 @@
+<div class="row position-form">
+    <div class="col-xs-12" style="width: 100%; height: 500px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <div *ngIf="loading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+      <h3>{{ loginMode ? 'Sign in' : 'Sign up' }}</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 500px;">
+          <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required') || emailFormControl.hasError('email')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput [formControl]="passwordFormControl" placeholder="Enter password">
+              <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
+                Please enter a valid password address
+              </mat-error>
+              <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button type="submit" style="background-color: lightgreen; margin-right: 20px;" >{{ loginMode ? 'Sign in' : 'Sign up' }}</button>
+            <button mat-raised-button type="button" style="background-color: lightskyblue;" (click)="switchMode()" >{{ loginMode ? 'Dont have account?' : 'Already have an account' }}</button>
+      </form>
+    </div>
+</div>
+
+

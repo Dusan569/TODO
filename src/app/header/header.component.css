@@ -1,0 +1,18 @@
+/* Custom styles for the dropdown menu */
+.dropdown-menu {
+    background-color: #f8f9fa; /* Background color */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  }
+  
+  .dropdown-item {
+    color: #343a40; /* Text color */
+    padding: 0.5rem 1rem; /* Padding around the text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f3f5; /* Background color on hover */
+  }
+  
