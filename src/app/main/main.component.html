@@ -21,8 +21,8 @@
                 [cdkDropListData]="todoList"
                 class="example-list"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of todoList; let i = index" cdkDrag>
-                    {{item}}
+                <div class="example-box" *ngFor="let item of todoList | keyvalue; let i = index" cdkDrag>
+                    {{item.value}}
                     <div>
                         <button (click)="edit(i)" mat-fab style="width: 35px; height: 35px; vertical-align:middle; margin-right: 7px;" class="edit-buttons" color="primary">
                             <mat-icon>edit</mat-icon>

@@ -12,14 +12,14 @@ export class DataService{
 
     saveList(){
         const todoData = this.mainService.getTodoList();
-        this.http.put<any[]>('https://todo-35ca2-default-rtdb.firebaseio.com/todo.json',todoData).subscribe(response => {            
+        this.http.put('https://todo-35ca2-default-rtdb.firebaseio.com/todo.json',todoData).subscribe(response => {            
             console.log(response);
             this.hasValue = true; 
         })
     }
 
     fetchList(){
-        return this.http.get<any[]>('https://todo-35ca2-default-rtdb.firebaseio.com/todo.json').pipe(tap(todoList => {
+        return this.http.get<string[]>('https://todo-35ca2-default-rtdb.firebaseio.com/todo.json').pipe(tap(todoList => {
             this.mainService.setTodoList(todoList);
         }), catchError(error => {
             console.error("Error", error);
