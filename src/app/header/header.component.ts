@@ -26,6 +26,6 @@ export class HeaderComponent {
   }
 
   saveData(){
-    this.dataService.saveList();
+    this.dataService .saveList();
   }
 }

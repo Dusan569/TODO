@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-import { DataService } from './shared/loading-spinner/save-data/data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +8,13 @@ import { DataService } from './shared/loading-spinner/save-data/data.service';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService, private dataService: DataService){}
+  constructor(private authService: AuthService,){}
 
   
 
   ngOnInit(){
     this.authService.autoLogin();
-    this.dataService.fetchList().subscribe();
+    // this.dataService.fetchList().subscribe();
   }
 
 

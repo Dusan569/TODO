@@ -7,7 +7,6 @@ import {
 } from '@angular/cdk/drag-drop';
 import { MainService } from './main.service';
 import { Subscription } from 'rxjs';
-import { HeaderComponent } from '../header/header.component';
 import { DataService } from '../shared/loading-spinner/save-data/data.service';
 
 @Component({
@@ -34,12 +33,10 @@ export class MainComponent {
   constructor(private mainService: MainService, private dataService: DataService){}
 
   ngOnInit(){
-    if(this.dataService.hasValue){
-      this.dataService.fetchList().subscribe(data => {
-        this.mainService.setTodoList(data);
-        this.todoList = this.mainService.getTodoList();
-      });
-    }
+    this.dataService.fetchList().subscribe(data => {
+      this.mainService.setTodoList(data);
+      this.todoList = this.mainService.getTodoList();
+    });
     this.checkForChanges = this.mainService.todoCanged.subscribe(todo => {
       this.todoList = todo;
     })
@@ -87,6 +84,7 @@ export class MainComponent {
         event.previousIndex,
         event.currentIndex,
       );
+
     }
   }
 }
