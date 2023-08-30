@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap, throwError } from "rxjs";
 import { User } from "./user.model";
 import { Router } from "@angular/router";
+import { MainService } from "../main/main.service";
 
 export interface AuthResponseData {
     kind: string;
@@ -31,6 +32,7 @@ export class AuthService {
     }
 
     login(email: string | undefined | null, password: string | undefined | null){
+        
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCiEh4qHtEE95j0UCGiGcKW10fVLhrbUl0',{
             email: email,
             password: password,
@@ -97,4 +99,9 @@ export class AuthService {
 
         localStorage.setItem('user', JSON.stringify(user));
     }
+
+    get currentUserId(): string {
+        return this.user.value?.id || '';
+    }
+
 }

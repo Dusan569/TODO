@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Data, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
-import { DataService } from '../shared/loading-spinner/save-data/data.service';
+import { MainService } from '../main/main.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ export class HeaderComponent {
   private user!: Subscription;
   isAuthenticated: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService, private dataService: DataService) {}
+  constructor(private router: Router, private authService: AuthService,  private mainService: MainService) {}
 
   ngOnInit(){
     this.user = this.authService.user.subscribe(user => {
@@ -23,9 +23,6 @@ export class HeaderComponent {
 
   logOut() {
     this.authService.logOut();
-  }
-
-  saveData(){
-    this.dataService .saveList();
+    this.mainService.clearData();
   }
 }

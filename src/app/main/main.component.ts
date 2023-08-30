@@ -21,9 +21,6 @@ export class MainComponent {
   startedEditing: boolean = false;
   index!: number;
 
-  private checkForChanges!: Subscription;
-  private checkForIndex!: Subscription;
-
   todoValueControl = new FormControl('', [Validators.required]);
 
   todoForm = new FormGroup({
@@ -34,13 +31,25 @@ export class MainComponent {
 
   ngOnInit(){
     this.dataService.fetchList().subscribe(data => {
-      this.mainService.setTodoList(data);
+      if (data && data.todo) {
+        this.mainService.setTodoList(data.todo);
+        this.mainService.setDoneList(data.done);
+      }
       this.todoList = this.mainService.getTodoList();
+      this.doneList = this.mainService.getDoneList();
     });
-    this.checkForChanges = this.mainService.todoCanged.subscribe(todo => {
+
+    this.mainService.todoChanged.subscribe(todo => {
       this.todoList = todo;
-    })
-    this.checkForIndex = this.mainService.editing.subscribe(i => {
+      this.dataService.saveList();
+    });
+
+    this.mainService.doneChanged.subscribe(done => {
+      this.doneList = done;
+      this.dataService.saveList();
+    });
+
+    this.mainService.editing.subscribe(i => {
       this.index = i;
     })
 
@@ -84,7 +93,10 @@ export class MainComponent {
         event.previousIndex,
         event.currentIndex,
       );
+      this.mainService.setTodoList(this.todoList);
+      this.mainService.setDoneList(this.doneList);
 
+      this.dataService.saveList();
     }
   }
 }

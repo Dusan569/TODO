@@ -67,4 +67,11 @@
     scale: 1.05;
     box-shadow: 7px 7px 9px #e0e0e0;
   }
-  
+  .todo-form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }

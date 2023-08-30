@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MainService } from '../main/main.service';
 
 @Component({
   selector: 'app-auth',
@@ -23,7 +24,7 @@ export class AuthComponent {
     'password': this.passwordFormControl
   });
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router, private mainService: MainService){}
 
   onSubmit(){
     if(!this.loginForm.valid){
@@ -43,6 +44,7 @@ export class AuthComponent {
 
     auth.subscribe(repsonse => {
       this.loading = false;
+      this.mainService.clearData();
     }, errorMessage => {
       this.loading = false;
       this.error = errorMessage;
