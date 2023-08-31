@@ -33,6 +33,8 @@ export class MainComponent {
     this.dataService.fetchList().subscribe(data => {
       if (data && data.todo) {
         this.mainService.setTodoList(data.todo);
+      }
+      if(data && data.done){
         this.mainService.setDoneList(data.done);
       }
       this.todoList = this.mainService.getTodoList();
