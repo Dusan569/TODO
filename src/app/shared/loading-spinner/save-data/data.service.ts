@@ -28,8 +28,8 @@ export class DataService{
     }
 
     fetchList() {
-        const userId = this.authService.currentUserId;  // Get the user ID
-        const url = `https://todo-35ca2-default-rtdb.firebaseio.com/${userId}/todo.json`;  // Update the URL
+        const userId = this.authService.currentUserId;
+        const url = `https://todo-35ca2-default-rtdb.firebaseio.com/${userId}/todo.json`;
         
         return this.http.get<{ todo: string[], done: string[] }>(url).pipe(
             tap(lists => {
