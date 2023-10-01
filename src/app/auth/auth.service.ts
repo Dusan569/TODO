@@ -67,7 +67,6 @@ export class AuthService {
         this.user.next(loadedUser);
     }
 
-
     private handleError(errorResponse: HttpErrorResponse){
         let errorMessage = 'Unknow error';
         if(!errorResponse.error || !errorResponse.error.error){

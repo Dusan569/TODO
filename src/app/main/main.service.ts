@@ -47,8 +47,9 @@ export class MainService {
           return this.done ? this.done.slice() : [];
         }
         return [];
-      }
+    }
 
+    //Functions
     addValue(value: string){
         this.todo = this.todo || [];
         this.todo.push(value);
