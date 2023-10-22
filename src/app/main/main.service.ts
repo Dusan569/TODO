@@ -66,7 +66,6 @@ export class MainService {
         this.todoChanged.next(this.todo.slice());
     }
 
-    //clear data so the new user wont take the data from last user
     clearData() {
         this.todo = [];
         this.done = [];
