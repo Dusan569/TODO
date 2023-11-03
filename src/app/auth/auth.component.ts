@@ -54,6 +54,5 @@ export class AuthComponent {
   switchMode(){
     this.loginMode = !this.loginMode;
   }
-  //This is a test for git!!!!
 
 }
